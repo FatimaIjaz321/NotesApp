@@ -1,0 +1,34 @@
+﻿@page
+@using System.Data.SqlClient;
+@{
+    try
+    {
+        string id = Request.Query["id"];
+        string connectionString = "Data Source=DESKTOP-QINOM21;Initial Catalog=mynotes;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            string sql = "DELETE FROM notes WHERE id = @id";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                }
+                else
+                {
+                }
+
+                connection.Close();
+            }
+        }
+
+    }
+    catch (Exception ex)
+    {
+    
+    }
+    Response.Redirect("/note/Index");
+}

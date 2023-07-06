@@ -1,0 +1,63 @@
+﻿@page
+@model NotesApp.Pages.note.IndexModel
+@{
+}
+
+<style>
+    table {
+        margin-top: 30px;
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 10px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: blue;
+        color: white;
+    }
+</style>
+
+
+<br>
+<h2>Notes List</h2>
+<a class='btn btn-primary btn-sm' href='/note/newnote'>New Note</a>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listnotesinfo)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.name</td>
+                <td>@item.description</td>
+                <td>@item.created_at</td>
+
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/note/Edit?id=@item.id">Edit</a>
+
+                    <a class="btn btn-primary btn-sm" href="/note/Delete?id=@item.id">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
